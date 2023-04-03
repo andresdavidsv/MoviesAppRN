@@ -1,17 +1,30 @@
-import React, {useEffect} from 'react';
-import {View, Text} from 'react-native';
-import movieDB from '../api/movieDB';
+import React from 'react';
+import {View, ActivityIndicator, Text} from 'react-native';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import Carousel from 'react-native-snap-carousel';
 
-type Props = {};
+import {useMovies} from '../hooks/useMovies';
+import {MoviePoster} from '../components/MoviePoster';
 
-export const HomeScreen = (props: Props) => {
-  useEffect(() => {
-    movieDB.get('/now_playing').then(res => console.log(res.data));
-  }, []);
+export const HomeScreen = () => {
+  const {moviesOnCinema, isLoading} = useMovies();
+  const {top} = useSafeAreaInsets();
 
+  if (isLoading) {
+    return (
+      <View style={{flex: 1, justifyContent: 'center', alignContent: 'center'}}>
+        <ActivityIndicator color="red" size={100} />
+      </View>
+    );
+  }
   return (
-    <View>
-      <Text>HomeScreen</Text>
+    <View style={{marginTop: top + 20}}>
+      <Carousel
+        data={moviesOnCinema}
+        renderItem={() => <MoviePoster movie={moviesOnCinema[6]} />}
+        sliderWidth={600}
+        itemWidth={300}
+      />
     </View>
   );
 };
