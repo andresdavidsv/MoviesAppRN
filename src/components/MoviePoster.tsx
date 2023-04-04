@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Image, StyleSheet} from 'react-native';
+import {View, Image, StyleSheet} from 'react-native';
 import {Movie} from '../interfaces/movieInterface';
 
 interface Props {
@@ -14,7 +14,6 @@ export const MoviePoster = ({movie}: Props) => {
         width: 300,
         height: 420,
       }}>
-      <Text>{movie.title}</Text>
       <View style={styles.imageContainer}>
         <Image source={{uri}} style={styles.image} />
       </View>
