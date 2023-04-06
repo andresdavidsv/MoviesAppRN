@@ -25,12 +25,12 @@ export const GradientProvider = ({children}: any) => {
     secondary: 'transparent',
   });
 
-  const setMainColors = (colors: ImageColors) => {
-    setColors(colors);
+  const setMainColors = (imageColors: ImageColors) => {
+    setColors(imageColors);
   };
 
-  const setPrevMainColors = (colors: ImageColors) => {
-    setPrevColors(colors);
+  const setPrevMainColors = (imageColors: ImageColors) => {
+    setPrevColors(imageColors);
   };
 
   return (
